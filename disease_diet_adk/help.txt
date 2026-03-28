@@ -1,0 +1,19 @@
+﻿Usage: python -m google.adk.cli [OPTIONS] COMMAND [ARGS]...
+
+  Agent Development Kit CLI tools.
+
+Options:
+  --version  Show the version and exit.
+  --help     Show this message and exit.
+
+Commands:
+  api_server   Starts a FastAPI server for agents.
+  conformance  Conformance testing tools for ADK.
+  create       Creates a new app in the current folder with prepopulated...
+  deploy       Deploys agent to hosted environments.
+  eval         Evaluates an agent given the eval sets.
+  eval_set     Manage Eval Sets.
+  migrate      ADK migration commands.
+  optimize     Optimizes the root agent instructions using the GEPA...
+  run          Runs an interactive CLI for a certain agent.
+  web          Starts a FastAPI server with Web UI for agents.

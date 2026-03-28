@@ -1,0 +1,9 @@
+crewai
+crewai[tools]
+langchain-google-genai
+google-generativeai
+fpdf2
+requests
+python-dotenv
+google-adk
+serpapi

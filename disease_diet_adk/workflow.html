@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Disease Diet Plan - ADK Workflow Diagram</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+        .container {
+            background: white;
+            border-radius: 20px;
+            padding: 30px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+            max-width: 1200px;
+            width: 100%;
+        }
+        h1 {
+            text-align: center;
+            color: #667eea;
+            margin-bottom: 10px;
+            font-size: 28px;
+        }
+        .subtitle {
+            text-align: center;
+            color: #666;
+            margin-bottom: 30px;
+            font-size: 14px;
+        }
+        .workflow {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            align-items: center;
+        }
+        .agent {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 20px 30px;
+            border-radius: 15px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+            width: 80%;
+            position: relative;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+        .agent:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.3);
+        }
+        .agent-title {
+            font-weight: bold;
+            font-size: 18px;
+            margin-bottom: 5px;
+        }
+        .agent-desc {
+            font-size: 13px;
+            opacity: 0.9;
+        }
+        .tool-badge {
+            display: inline-block;
+            background: rgba(255,255,255,0.2);
+            padding: 3px 10px;
+            border-radius: 12px;
+            font-size: 11px;
+            margin-top: 8px;
+            margin-right: 5px;
+        }
+        .arrow {
+            width: 3px;
+            height: 30px;
+            background: #667eea;
+            margin: 0 auto;
+            position: relative;
+        }
+        .arrow::after {
+            content: '▼';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            color: #667eea;
+            font-size: 20px;
+        }
+        .parallel-container {
+            display: flex;
+            gap: 20px;
+            width: 100%;
+            justify-content: center;
+            position: relative;
+        }
+        .parallel-agent {
+            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+            color: white;
+            padding: 20px;
+            border-radius: 15px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+            width: 45%;
+            transition: transform 0.3s;
+        }
+        .parallel-agent:hover {
+            transform: translateY(-5px);
+        }
+        .parallel-label {
+            text-align: center;
+            font-weight: bold;
+            color: #f5576c;
+            margin-bottom: 10px;
+            font-size: 14px;
+        }
+        .validator-agent {
+            background: linear-gradient(135deg, #fa709a 0%, #fee140 100%);
+            color: #333;
+        }
+        .legend {
+            margin-top: 30px;
+            padding: 20px;
+            background: #f8f9fa;
+            border-radius: 10px;
+        }
+        .legend-title {
+            font-weight: bold;
+            margin-bottom: 10px;
+            color: #667eea;
+        }
+        .legend-item {
+            display: flex;
+            align-items: center;
+            margin-bottom: 8px;
+            font-size: 13px;
+        }
+        .legend-box {
+            width: 20px;
+            height: 20px;
+            border-radius: 5px;
+            margin-right: 10px;
+        }
+        .seq { background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); }
+        .par { background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%); }
+        .val { background: linear-gradient(135deg, #fa709a 0%, #fee140 100%); }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Disease Diet Plan Generator - ADK Workflow</h1>
+        <p class="subtitle">Advanced Multi-Agent System with Memory, Parallel Execution & Validation</p>
+        
+        <div class="workflow">
+            <!-- User Input -->
+            <div class="agent" style="background: linear-gradient(135deg, #84fab0 0%, #8fd3f4 100%);">
+                <div class="agent-title">👤 USER INPUT</div>
+                <div class="agent-desc">Disease/Condition + Allergies</div>
+            </div>
+            
+            <div class="arrow"></div>
+            
+            <!-- Agent 1 -->
+            <div class="agent">
+                <div class="agent-title">🔍 Agent 1: Input Validator</div>
+                <div class="agent-desc">Validates medical inputs, standardizes disease/allergens, safety checks</div>
+                <span class="tool-badge">Memory Context</span>
+            </div>
+            
+            <div class="arrow"></div>
+            
+            <!-- Agent 2 -->
+            <div class="agent">
+                <div class="agent-title">🔬 Agent 2: Medical Researcher</div>
+                <div class="agent-desc">Researches disease-diet connections using authoritative clinical literature</div>
+                <span class="tool-badge">📚 PubMed RAG DB (435 Diseases)</span>
+                <span class="tool-badge">🌐 SerpAPI (Web Search)</span>
+                <span class="tool-badge">Memory Context</span>
+            </div>
+            
+            <div class="arrow"></div>
+            
+            <!-- Agent 3 -->
+            <div class="agent">
+                <div class="agent-title">🥗 Agent 3: Nutritionist</div>
+                <div class="agent-desc">Creates categorized food lists with benefits, excludes allergens</div>
+                <span class="tool-badge">Memory Context</span>
+            </div>
+            
+            <div class="arrow"></div>
+            
+            <!-- Parallel Agents -->
+            <div class="parallel-label">⚡ PARALLEL EXECUTION</div>
+            <div class="parallel-container">
+                <div class="parallel-agent">
+                    <div class="agent-title">📊 Agent 4a: Nutrition Analyst</div>
+                    <div class="agent-desc">Retrieves detailed USDA nutrition data for top 10 foods</div>
+                    <span class="tool-badge">🥑 USDA API (Custom)</span>
+                </div>
+                
+                <div class="parallel-agent">
+                    <div class="agent-title">👨‍🍳 Agent 4b: Recipe Curator</div>
+                    <div class="agent-desc">Creates 7 practical meal ideas with preparation steps</div>
+                    <span class="tool-badge">Memory Context</span>
+                </div>
+            </div>
+            
+            <div class="arrow"></div>
+            
+            <!-- Agent 5 - Validator -->
+            <div class="agent validator-agent">
+                <div class="agent-title">⚠️ Agent 5: Allergen Safety Validator</div>
+                <div class="agent-desc">HALLUCINATION MITIGATION: Pre-screens foods against Clinical PubMed DB to prevent dangerous recommendations</div>
+                <span class="tool-badge">📚 PubMed RAG DB</span>
+                <span class="tool-badge">🛡️ Allergen Validator (Custom)</span>
+                <span class="tool-badge">Safety Check</span>
+            </div>
+            
+            <div class="arrow"></div>
+            
+            <!-- Agent 6 -->
+            <div class="agent">
+                <div class="agent-title">📋 Agent 6: Content Aggregator</div>
+                <div class="agent-desc">Compiles all data into structured JSON format</div>
+                <span class="tool-badge">JSON Schema</span>
+                <span class="tool-badge">Memory Context</span>
+            </div>
+            
+            <div class="arrow"></div>
+            
+            <!-- Agent 7 -->
+            <div class="agent">
+                <div class="agent-title">📄 Agent 7: File Generator</div>
+                <div class="agent-desc">Generates JSON + PDF reports</div>
+                <span class="tool-badge">📝 PDF Generator (Custom)</span>
+                <span class="tool-badge">File I/O</span>
+            </div>
+            
+            <div class="arrow"></div>
+            
+            <!-- Outputs -->
+            <div class="agent" style="background: linear-gradient(135deg, #a8edea 0%, #fed6e3 100%);">
+                <div class="agent-title">✅ OUTPUTS</div>
+                <div class="agent-desc">
+                    • diet_data_[timestamp].json<br>
+                    • diet_plan_[timestamp].pdf<br>
+                    • workflow_execution.log (monitoring)
+                </div>
+            </div>
+        </div>
+        
+        <div class="legend">
+            <div class="legend-title">Legend & Key Features:</div>
+            <div class="legend-item">
+                <div class="legend-box seq"></div>
+                <span><b>Sequential Agents:</b> Execute in order with context passing</span>
+            </div>
+            <div class="legend-item">
+                <div class="legend-box par"></div>
+                <span><b>Parallel Agents:</b> Execute simultaneously for efficiency</span>
+            </div>
+            <div class="legend-item">
+                <div class="legend-box val"></div>
+                <span><b>Validator Agent:</b> Prevents hallucinations & ensures safety</span>
+            </div>
+            <div class="legend-item" style="margin-top: 15px;">
+                <span><b>🔧 Tools:</b> 2 External (SerpAPI, USDA) + 2 Custom (Allergen Validator, PDF Generator)</span>
+            </div>
+            <div class="legend-item">
+                <span><b>💾 Memory:</b> Context sharing across all agents via {output_key} references</span>
+            </div>
+            <div class="legend-item">
+                <span><b>📊 Monitoring:</b> Comprehensive logging to workflow_execution.log</span>
+            </div>
+            <div class="legend-item">
+                <span><b>🛡️ Safety:</b> Allergen validation + Medical disclaimer + Evidence-based recommendations</span>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

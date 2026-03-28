@@ -1,0 +1,108 @@
+﻿Usage: python -m google.adk.cli web [OPTIONS] [AGENTS_DIR]
+
+  Starts a FastAPI server with Web UI for agents.
+
+  AGENTS_DIR: The directory of agents, where each subdirectory is a single
+  agent, containing at least `__init__.py` and `agent.py` files.
+
+  Example:
+
+    adk web --session_service_uri=[uri] --port=[port] path/to/agents_dir
+
+Options:
+  --enable_features TEXT          Optional. Comma-separated list of feature
+                                  names to enable. This provides an
+                                  alternative to environment variables for
+                                  enabling experimental features. Example: --e
+                                  nable_features=JSON_SCHEMA_FOR_FUNC_DECL,PRO
+                                  GRESSIVE_SSE_STREAMING
+  --disable_features TEXT         Optional. Comma-separated list of feature
+                                  names to disable. This provides an
+                                  alternative to environment variables for
+                                  disabling features. Example: --disable_featu
+                                  res=JSON_SCHEMA_FOR_FUNC_DECL,PROGRESSIVE_SS
+                                  E_STREAMING
+  --host TEXT                     Optional. The binding host of the server
+                                  [default: 127.0.0.1]
+  --port INTEGER                  Optional. The port of the server
+  --allow_origins TEXT            Optional. Origins to allow for CORS. Can be
+                                  literal origins (e.g.,
+                                  'https://example.com') or regex patterns
+                                  prefixed with 'regex:' (e.g.,
+                                  'regex:https://.*\.example\.com').
+  -v, --verbose                   Enable verbose (DEBUG) logging. Shortcut for
+                                  --log_level DEBUG.
+  --log_level [debug|info|warning|error|critical]
+                                  Optional. Set the logging level
+  --trace_to_cloud                Optional. Whether to enable cloud trace for
+                                  telemetry.
+  --otel_to_cloud                 Optional. Whether to write OTel data to
+                                  Google Cloud Observability services - Cloud
+                                  Trace and Cloud Logging.
+  --reload / --no-reload          Optional. Whether to enable auto reload for
+                                  server. Not supported for Cloud Run.
+  --a2a                           Optional. Whether to enable A2A endpoint.
+  --reload_agents                 Optional. Whether to enable live reload for
+                                  agents changes.
+  --eval_storage_uri TEXT         Optional. The evals storage URI to store
+                                  agent evals, supported URIs: gs://<bucket
+                                  name>.
+  --extra_plugins TEXT            Optional. Comma-separated list of extra
+                                  plugin classes or instances to enable (e.g.,
+                                  my.module.MyPluginClass or
+                                  my.module.my_plugin_instance).
+  --url_prefix TEXT               Optional. URL path prefix when the
+                                  application is mounted behind a reverse
+                                  proxy or API gateway (e.g., '/api/v1',
+                                  '/adk'). This ensures generated URLs and
+                                  redirects work correctly when the app is not
+                                  served at the root path. Must start with '/'
+                                  if provided.
+  --logo-text TEXT                Optional. The text to display in the logo of
+                                  the web UI.
+  --logo-image-url TEXT           Optional. The URL of the image to display in
+                                  the logo of the web UI.
+  --session_service_uri TEXT      Optional. The URI of the session service. If
+                                  set, ADK uses this service.
+                                  
+                                  If unset, ADK chooses a default session service (see
+                                  --use_local_storage).
+                                  - Use 'agentengine://<agent_engine>' to connect to Agent Engine
+                                    sessions. <agent_engine> can either be the full qualified resource
+                                    name 'projects/abc/locations/us-central1/reasoningEngines/123' or
+                                    the resource id '123'.
+                                  - Use 'memory://' to run with the in-memory session service.
+                                  - Use 'sqlite://<path_to_sqlite_file>' to connect to a SQLite DB.
+                                  - See https://docs.sqlalchemy.org/en/20/core/engines.html#backend-specific-urls
+                                    for supported database URIs.
+  --artifact_service_uri TEXT     Optional. The URI of the artifact service.
+                                  If set, ADK uses this service.
+                                  
+                                  If unset, ADK chooses a default artifact service (see
+                                  --use_local_storage).
+                                  - Use 'gs://<bucket_name>' to connect to the GCS artifact service.
+                                  - Use 'memory://' to force the in-memory artifact service.
+                                  - Use 'file://<path>' to store artifacts in a custom local directory.
+  --use_local_storage / --no_use_local_storage
+                                  Optional. Whether to use local .adk storage
+                                  when --session_service_uri and
+                                  --artifact_service_uri are unset. Cannot be
+                                  combined with explicit service URIs. When
+                                  the agents directory isn't writable (common
+                                  in Cloud Run/Kubernetes), ADK falls back to
+                                  in-memory unless overridden by
+                                  ADK_FORCE_LOCAL_STORAGE=1 or
+                                  ADK_DISABLE_LOCAL_STORAGE=1.  [default:
+                                  use_local_storage]
+  --memory_service_uri TEXT       Optional. The URI of the memory service.
+                                  - Use 'rag://<rag_corpus_id>' to connect to Vertex AI Rag Memory Service.
+                                  - Use 'agentengine://<agent_engine>' to connect to Agent Engine
+                                    sessions. <agent_engine> can either be the full qualified resource
+                                    name 'projects/abc/locations/us-central1/reasoningEngines/123' or
+                                    the resource id '123'.
+                                  - Use 'memory://' to force the in-memory memory service.
+  --session_db_url TEXT           Deprecated. Use --session_service_uri
+                                  instead.
+  --artifact_storage_uri TEXT     Deprecated. Use --artifact_service_uri
+                                  instead.
+  --help                          Show this message and exit.
